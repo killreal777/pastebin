@@ -1,0 +1,30 @@
+services:
+  postgres:
+    container_name: postgres
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=pastebin'
+      - 'POSTGRES_USER=killreal777'
+      - 'POSTGRES_PASSWORD=qwerty12345'
+    ports:
+      - '5432'
+#  redis:
+#    container_name: redis
+#    image: 'redis:latest'
+#    ports:
+#      - '6379'
+  app:
+    container_name: api-service
+    depends_on:
+      - postgres
+#      - redis
+    build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/pastebin
+      - SPRING_DATASOURCE_USERNAME=killreal777
+      - SPRING_DATASOURCE_PASSWORD=qwerty12345
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#      - SPRING_DATA_REDIS_HOST=redis
+#      - SPRING_DATA_REDIS_PORT=6379
+    ports:
+      - '8080:8080'

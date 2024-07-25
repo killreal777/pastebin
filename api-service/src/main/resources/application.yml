@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+
+spring:
+
+  application:
+    name: api-service
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pastebin
+    username: killreal777
+    password: qwerty12345
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    aws:
+      credentials:
+        access-key: ???
+        secret-key: ???
+      region:
+        static: ru-central1
+      endpoint: https://storage.yandexcloud.net
+
+
+application:
+  bucket:
+    name: ???
